@@ -1,0 +1,24 @@
+<section class='venue'>
+  <h2 class='section__hed'>{{{doc.venueTitle}}}</h2>
+  <h4 class='section__by'>{{{doc.venueBy}}}</h2>
+  {{#each doc.venueIntro}}
+    <p class='prose'>{{{value}}}
+  {{/each}}
+
+  <div class='summary summary-venue'>
+    <p class='must__title'>{{{doc.artistsMust}}}</p>
+    <ul class='must__req'>
+      {{#each doc.venueReq}}
+        <li>{{{this}}}</li>
+      {{/each}}
+    </ul>
+
+    <p class='calculation__title'>{{{doc.calcTitle}}}</p>
+    <ul class='calculation__steps'>
+      {{#each doc.venueCalc}}
+        <li>{{{this}}}</li>
+      {{/each}}
+    </ul>
+    <figure class='chart chart-venue'></figure>
+  </div>
+</section>
