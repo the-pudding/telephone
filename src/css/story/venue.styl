@@ -7,3 +7,31 @@
 
   .must__req
     list-style-type: circle
+
+  figure
+    font-family $national
+    max-width $column-width
+    margin 2rem auto
+    .bar__group
+      display flex
+      flex-direction column
+      margin-bottom 0.25rem
+    .right
+    .bar__label
+      &-text
+        margin 0
+        font-size 16px
+        font-weight bold
+        color white
+      .bar__bar
+        background-color: $primary
+        height 25px
+        display flex
+        flex-direction row
+        align-items: center
+        justify-content: space-between;
+        padding 0 0.5rem
+        &-text
+          font-size 14px
+          margin 0
+          color white
