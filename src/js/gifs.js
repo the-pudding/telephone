@@ -2,9 +2,11 @@ const fs = require('fs');
 const d3 = require('d3');
 const request = require('request');
 const cheerio = require('cheerio');
+const _ = require('lodash');
 
 const OUT_PATH = './src/assets/data/output';
 const IN_PATH = './src/assets/data/output';
+const IN_JSON = './src/assets/data/output/billboardCharts.json'
 const allAlbums = [];
 
 //Pulls down html of billboard top 200 albums
@@ -46,6 +48,15 @@ function getChartData(filename) {
 	})
 }
 
+function findUniqArtists(data) {
+	//console.log(data)
+	const uniqArtists = _.uniqBy(data, 'artist')
+	const artistList = uniqArtists.map(function(obj) { return obj.artist; }).sort()
+	const json = JSON.stringify(artistList);
+
+	fs.writeFileSync(`${OUT_PATH}/artists.json`, json);
+}
+
 function init() {
 	getBillboardHTML(2017)
 	getBillboardHTML(2018)
@@ -57,6 +68,8 @@ function init() {
   const json = JSON.stringify(flat);
 
 	fs.writeFileSync(`${OUT_PATH}/billboardCharts.json`, json);
+
+	findUniqArtists(flat)
 }
 
 init();
