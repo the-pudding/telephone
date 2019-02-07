@@ -69,18 +69,18 @@ function resize(){
   width = $containerBars.node().offsetWidth - margin.left - margin.right;
   height = (barHeight * data.length) + (paddingHeight * (data.length - 1))
 
-  console.log({width})
+  //console.log({width})
 
   const max = d3.max(data, d => d.capacities)
 
-  console.log({max})
+  //console.log({max})
 
   scaleX
     .domain([0, max])
     .range([0, width - margin.right - margin.left])
 
   const test = scaleX(max)
-  console.log({test})
+  //console.log({test})
 
   update()
 }

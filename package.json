@@ -62,7 +62,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "getBillboardHTML": "node src/js/gifs.js"
+    "getBillboardHTML": "node src/js/gifData.js"
   },
   "repository": {
     "type": "git",

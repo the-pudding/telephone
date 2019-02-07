@@ -1,131 +1,98 @@
-const fs = require('fs');
-const d3 = require('d3');
-const request = require('request');
-const cheerio = require('cheerio');
-const _ = require('lodash');
+let giphyCounts = []
+//
+// let $containerBars = d3.select('.chart-venue')
+// let $right = null
+//
+// const scaleX = d3.scaleLinear()
+// const scaleY = d3.scaleBand()
+// let width = 0
+// let height = 0
+//
+// let margin = {
+//   top: 30,
+//   bottom: 0,
+//   left: 0,
+//   right: 0
+// }
+//
+// // constants
+// let barHeight = 20
+// let paddingHeight = 8
+// const textPaddingSide = 6
+// const textPaddingTop = 3
+// const fontSize = 12
+// let labelWidth = 80
+//
+// let roundingConstant = 5000
+//
+// let formatNumber = d3.format('.2s')
 
-const OUT_PATH = './src/assets/data/output';
-const IN_PATH = './src/assets/data/output';
-const IN_JSON = './src/assets/data/output/billboardCharts.json'
-const allYears = ['2017', '2018'];
-const allAlbums = [];
-const artistList = [];
-const giphyUrls = [];
-const giphyCounts = [];
+// function cleanData(arr){
+// 	return arr.map((d, i) => {
+// 		return {
+// 			...d,
+//       capacities: +d.capacities,
+// 		}
+// 	})
+// }
+//
+// function setup(){
+//   $right = $containerBars.append('div.right')
+//
+//   const barGroups = $right.selectAll('bar__group')
+//     .data(data)
+//     .enter()
+//     .append('div.bar__group')
+//
+//   const bar = barGroups
+//     .append('div.bar__bar')
+//
+//   bar
+//     .append('p.bar__label-text')
+//     .text(d => d.artist)
+//   bar
+//     .append('p.bar__bar-text')
+//     .text(d => `${formatNumber(d.capacities)}`)
+//
+//
+//
+//   resize()
+// }
+//
+// function update(){
+//   $right.selectAll('.bar__bar')
+//     .st('width', d => scaleX(d.capacities))
+// }
 
-//Pulls down html of billboard top 200 albums
-async function getBillboardHTML(year) {
-	const url = `https://www.billboard.com/charts/year-end/${year}/top-billboard-200-albums`
-
-	return new Promise((resolve, reject) => {
-		request(url, (err, response, body) => {
-			fs.writeFileSync(`${OUT_PATH}/albumsPage${year}.html`, body);
-		})
-	})
-}
-
-//Pulls relevant data from each album in the top 200
-function getChartData(filename) {
-	const file = fs.readFileSync(`${IN_PATH}/${filename}`, 'utf-8');
-	const $ = cheerio.load(file);
-
-	const $chartContainer = $('.chart-details')
-
-	$chartContainer.find('.chart-details__left-rail').each((i, el) => {
-		const $list = $(el).find('.chart-details__item-list')
-
-		$list.each((i, el) => {
-			const $article = $(el).find('.ye-chart-item')
-			const $album = $article.find('.ye-chart-item__primary-row')
-			const year = $album.attr('data-date')
-
-			$album.each((i, el) => {
-				const rank = $(el).find('.ye-chart-item__rank').text().trim()
-				const $text = $(el).find('.ye-chart-item__text')
-				const title = $text.find('.ye-chart-item__title').text().trim()
-				const artist = $text.find('.ye-chart-item__artist').text().trim()
-
-				const singleAlbum = { year, rank, title, artist };
-				allAlbums.push(singleAlbum)
-			});
-		});
-	})
-}
-
-//Pulls total gif count for each artist
-function getGiphyCount(filename) {
-	const splitz = filename.split('.txt')
-	const name = splitz[0].replace(/-/g, ' ');
-
-	const file = fs.readFileSync(`${IN_PATH}/giphy/${filename}`, 'utf-8');
-	const before = 'total: '
-	const after = ','
-	const match = file.match(new RegExp(before + '(.*)' + after))
-	const count = match[1]
-
-	const countData = {name, count}
-
-	giphyCounts.push(countData)
-
-}
-
-function findUniqArtists(data) {
-	const uniqArtists = _.uniqBy(data, 'artist')
-	artistList.push(uniqArtists.map(function(obj) { return obj.artist; }).sort())
-	//console.log(artistList.length)
-	fs.writeFileSync(`${OUT_PATH}/artists.csv`, artistList);
-}
-
-function formatGiphyUrls(data) {
-	const searchTerms = data[0]
-		.filter(d => (!d.includes('&') && !d.includes('Broadway')))
-		.map(function(artist) {
-			const term = artist.trim().replace(/\s+/g, '-').replace('.', '').replace('!', '').replace('Pnk', 'Pink')
-			const url = `https://giphy.com/search/${term}`
-			return {artist, url};
-		})
-
-	giphyUrls.push(searchTerms)
-}
-
-async function pullGiphyHTML(data) {
-	const url = data.url
-	const splitz = url.split('search/')
-	const name = splitz[1];
-
-	return new Promise((resolve, reject) => {
-		request(url, (err, response, body) => {
-			fs.writeFileSync(`${OUT_PATH}/giphy/${name}.txt`, body);
-		})
-	})
-}
+// function resize(){
+//   // defaults to grabbing dimensions from container element
+//   width = $containerBars.node().offsetWidth - margin.left - margin.right;
+//   height = (barHeight * data.length) + (paddingHeight * (data.length - 1))
+//
+//   //console.log({width})
+//
+//   const max = d3.max(data, d => d.capacities)
+//
+//   //console.log({max})
+//
+//   scaleX
+//     .domain([0, max])
+//     .range([0, width - margin.right - margin.left])
+//
+//   const test = scaleX(max)
+//   //console.log({test})
+//
+//   update()
+// }
 
 function init() {
-	allYears.map(getBillboardHTML)
-
-	const files = fs.readdirSync(IN_PATH).filter(d => d.includes('.html'));
-	files.map(getChartData);
-
-	const tops = allAlbums.filter(d => d.rank <= 50)
-
-	const flat = [].concat(...tops);
-  const json = JSON.stringify(flat);
-
-	fs.writeFileSync(`${OUT_PATH}/billboardCharts.json`, json);
-
-	findUniqArtists(flat)
-
-	formatGiphyUrls(artistList)
-	const flatGiphy = [].concat(...giphyUrls);
-	flatGiphy.map(pullGiphyHTML)
-
-	const giphyFiles = fs.readdirSync(`${IN_PATH}/giphy`).filter(d => d.includes('.txt'));
-	giphyFiles.map(getGiphyCount);
-
-	console.log(giphyCounts)
-
-	const csv = d3.csvFormat(giphyCounts);
-  fs.writeFileSync(`${OUT_PATH}/giphyCounts.csv`, csv);
+  return new Promise((resolve) => {
+		d3.loadData('assets/data/giphyCounts.csv', (err, response) => {
+			giphyCounts = response[0]
+      console.log(giphyCounts)
+			resolve()
+		})
+	})
 }
 
-init();
+export default { init };
