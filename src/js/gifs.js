@@ -1,63 +1,53 @@
 let giphyCounts = []
-//
-// let $containerBars = d3.select('.chart-venue')
-// let $right = null
-//
-// const scaleX = d3.scaleLinear()
-// const scaleY = d3.scaleBand()
-// let width = 0
-// let height = 0
-//
-// let margin = {
-//   top: 30,
-//   bottom: 0,
-//   left: 0,
-//   right: 0
-// }
-//
-// // constants
-// let barHeight = 20
-// let paddingHeight = 8
-// const textPaddingSide = 6
-// const textPaddingTop = 3
-// const fontSize = 12
-// let labelWidth = 80
-//
-// let roundingConstant = 5000
-//
-// let formatNumber = d3.format('.2s')
+const giphyGIFS = []
+let $gifDiv = null
 
-// function cleanData(arr){
-// 	return arr.map((d, i) => {
-// 		return {
-// 			...d,
-//       capacities: +d.capacities,
-// 		}
-// 	})
-// }
-//
-// function setup(){
-//   $right = $containerBars.append('div.right')
-//
-//   const barGroups = $right.selectAll('bar__group')
-//     .data(data)
-//     .enter()
-//     .append('div.bar__group')
-//
-//   const bar = barGroups
-//     .append('div.bar__bar')
-//
-//   bar
-//     .append('p.bar__label-text')
-//     .text(d => d.artist)
-//   bar
-//     .append('p.bar__bar-text')
-//     .text(d => `${formatNumber(d.capacities)}`)
-//
-//
-//
-//   resize()
-// }
+let $containerGifs = d3.select('.chart-gifs')
+const scaleX = d3.scaleLinear()
+const formatComma = d3.format(',')
+let width = 0
+let height = 0
+
+let margin = {
+  top: 30,
+  bottom: 0,
+  left: 0,
+  right: 0
+}
+
+function setup(){
+  $gifDiv = $containerGifs.append('div.gifs')
+
+  const $gifGroup = $gifDiv.selectAll('dif__group')
+    .data(giphyCounts)
+    .enter()
+    .append('div.gif__group')
+
+  const $gifText = $gifGroup
+      .append('div.gif__text')
+
+  const rankText = $gifText
+    .append('p.gif__rank-text')
+    .text(function(d, i) {
+      return i+1
+    })
+
+  const nameText = $gifText
+    .append('p.gif__name-text')
+    .text(d => d.name)
+
+  const countText = $gifText
+    .append('p.gif__count-text')
+    .text(d => formatComma(d.count) + ' gifs')
+
+  const gif = $gifGroup
+    .append('div.gif__gif')
+    .html(function(d){
+      const filename = (d.name).replace(/\s+/g, '-')
+      return '<img src="assets/images/' + filename + '.gif">'
+    })
+
+}
 //
 // function update(){
 //   $right.selectAll('.bar__bar')
@@ -88,8 +78,9 @@ let giphyCounts = []
 function init() {
   return new Promise((resolve) => {
 		d3.loadData('assets/data/giphyCounts.csv', (err, response) => {
-			giphyCounts = response[0]
-      console.log(giphyCounts)
+      //Limit to top 10
+			giphyCounts = response[0].slice(0,10)
+      setup()
 			resolve()
 		})
 	})

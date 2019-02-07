@@ -12,26 +12,40 @@
     font-family $national
     max-width $column-width
     margin 2rem auto
-    .bar__group
+    .gifs
+      width 100%
       display flex
-      flex-direction column
-      margin-bottom 0.25rem
-    .right
-    .bar__label
-      &-text
-        margin 0
-        font-size 16px
-        font-weight bold
-        color white
-      .bar__bar
-        background-color: $primary
-        height 25px
-        display flex
-        flex-direction row
-        align-items: center
-        justify-content: space-between;
-        padding 0 0.5rem
-        &-text
-          font-size 14px
-          margin 0
-          color white
+      flex-direction row
+      flex-wrap wrap
+      justify-content space-between
+
+      .gif__group
+        width 19%
+        margin-bottom 2rem
+
+        .gif__text
+          height 5.5rem
+
+          .gif__rank-text
+            background-color $primary
+            height 1.5rem
+            width 1.5rem
+            set-type-size('x-small')
+            text-align center
+            color $white
+            font-weight 700
+            margin 0 0 0.25rem 0
+            padding 0.35rem 0.25rem 0.25rem 0.25rem
+            line-height 1
+
+          .gif__name-text
+            font-weight 700
+            margin 0
+            padding 0
+            line-height 1
+
+          .gif__count-text
+            color $gray-dark
+            padding 0
+            line-height 1
+            margin 0 0 0.25rem 0

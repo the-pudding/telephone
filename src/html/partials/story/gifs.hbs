@@ -1,24 +1,26 @@
 <section class='gifs'>
-  <h2 class='section__hed'>{{{doc.venueTitle}}}</h2>
-  <h4 class='section__by'>{{{doc.venueBy}}}</h2>
-  {{#each doc.venueIntro}}
+  <h2 class='section__hed'>{{{doc.gifsTitle}}}</h2>
+  <h4 class='section__by'>{{{doc.gifsBy}}}</h2>
+  {{#each doc.gifsIntro}}
     <p class='prose'>{{{value}}}
   {{/each}}
 
   <div class='summary summary-gifs'>
     <p class='must__title'>{{{doc.artistsMust}}}</p>
     <ul class='must__req'>
-      {{#each doc.venueReq}}
+      {{#each doc.gifsReq}}
         <li>{{{this}}}</li>
       {{/each}}
     </ul>
 
     <p class='calculation__title'>{{{doc.calcTitle}}}</p>
     <ul class='calculation__steps'>
-      {{#each doc.venueCalc}}
+      {{#each doc.gifsCalc}}
         <li>{{{this}}}</li>
       {{/each}}
     </ul>
-    <figure class='chart chart-gifs'></figure>
+    <figure class='chart chart-gifs'>
+      <!--<img class='gif' src='assets/images/2-Chainz.gif'></src>-->
+    </figure>
   </div>
 </section>

@@ -9,7 +9,7 @@ const OUT_PATH = './src/assets/data/output';
 const IN_PATH = './src/assets/data/output';
 const IN_JSON = './src/assets/data/output/billboardCharts.json'
 const allYears = ['2017', '2018'];
-const allAlbums = [];
+const allArtists = [];
 const artistList = [];
 const giphyUrls = [];
 const giphyCounts = [];
@@ -18,11 +18,11 @@ const giphyData = [];
 function getData() {
 	//HELPER FUNCTIONS
 	async function getBillboardHTML(year) {
-		const url = `https://www.billboard.com/charts/year-end/${year}/top-billboard-200-albums`
+		const url = `https://www.billboard.com/charts/year-end/${year}/top-artists`
 
 		return new Promise((resolve, reject) => {
 			request(url, (err, response, body) => {
-				fs.writeFileSync(`${OUT_PATH}/albumsPage${year}.html`, body);
+				fs.writeFileSync(`${OUT_PATH}/artistsPage${year}.html`, body);
 			})
 		})
 	}
@@ -37,18 +37,17 @@ function getData() {
 			const $list = $(el).find('.chart-details__item-list')
 
 			$list.each((i, el) => {
-				const $article = $(el).find('.ye-chart-item')
-				const $album = $article.find('.ye-chart-item__primary-row')
-				const year = $album.attr('data-date')
+				const $item = $(el).find('.ye-chart-item')
+				const $row = $item.find('.ye-chart-item__primary-row')
+				const year = $row.attr('data-date')
 
-				$album.each((i, el) => {
+				$row.each((i, el) => {
 					const rank = $(el).find('.ye-chart-item__rank').text().trim()
 					const $text = $(el).find('.ye-chart-item__text')
-					const title = $text.find('.ye-chart-item__title').text().trim()
-					const artist = $text.find('.ye-chart-item__artist').text().trim()
+					const artist = $text.find('.ye-chart-item__title').text().trim()
 
-					const singleAlbum = { year, rank, title, artist };
-					allAlbums.push(singleAlbum)
+					const singleArtist = { year, rank, artist };
+					allArtists.push(singleArtist)
 				});
 			});
 		})
@@ -71,17 +70,23 @@ function getData() {
 	}
 
 	function findUniqArtists(data) {
-		const uniqArtists = _.uniqBy(data, 'artist')
+			const uniqArtists = _.uniqBy(data, 'artist')
 		artistList.push(uniqArtists.map(function(obj) { return obj.artist; }).sort())
-		//console.log(artistList.length)
 		fs.writeFileSync(`${OUT_PATH}/artists.csv`, artistList);
 	}
 
 	function formatGiphyUrls(data) {
 		const searchTerms = data[0]
-			.filter(d => (!d.includes('&') && !d.includes('Broadway')))
+			.filter(d => (!d.includes('&'))
 			.map(function(artist) {
-				const term = artist.trim().replace(/\s+/g, '-').replace('.', '').replace('!', '').replace('Pnk', 'Pink')
+				const term = artist.trim()
+										.replace(/\s+/g, '-')
+										.replace('.', '')
+										.replace('!', '')
+										.replace('+ ', '')
+										.replace("'", '')
+										.replace('$', 'S')
+										.replace('Pnk', 'Pink')
 				const url = `https://giphy.com/search/${term}`
 				return {artist, url};
 			})
@@ -102,20 +107,20 @@ function getData() {
 	}
 
 	//STEPS
-	//STEP 1: Pulls down the HTML for the Billbiard Top 200 albums from 2017 & 2018
+	//STEP 1: Pulls down the HTML for the Billboard Top 100 artists from 2017 & 2018
 	allYears.map(getBillboardHTML)
 
-	//STEP 2: Gets the album data from each album in the Top 200 for both years
+	//STEP 2: Gets the data from each artist in the Top 100 for both years
 	const files = fs.readdirSync(IN_PATH).filter(d => d.includes('.html'));
 	files.map(getChartData);
 
-	//STEP 2B: Limits to the Top 50 albums instead of the Top 200
-	const tops = allAlbums.filter(d => d.rank <= 50)
+	//STEP 2B: Limits to the Top XX albums
+	const tops = allArtists.filter(d => d.rank <= 100)
 	const flat = [].concat(...tops);
 	const json = JSON.stringify(flat);
 	fs.writeFileSync(`${OUT_PATH}/billboardCharts.json`, json);
 
-	//STEP 3: Removes artists who appear more than once in the top albums
+	//STEP 3: Removes artists who appear more than once in the top
 	findUniqArtists(flat)
 
 	//STEP 4: Format the GIPHY search urls for each artist
