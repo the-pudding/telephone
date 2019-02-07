@@ -11,6 +11,7 @@ const allYears = ['2017', '2018'];
 const allAlbums = [];
 const artistList = [];
 const giphyUrls = [];
+const giphyCounts = [];
 
 //Pulls down html of billboard top 200 albums
 async function getBillboardHTML(year) {
@@ -51,13 +52,21 @@ function getChartData(filename) {
 	})
 }
 
+//Pulls total gif count for each artist
 function getGiphyCount(filename) {
-	const file = fs.readFileSync(`${IN_PATH}/giphy/${filename}`, 'utf-8');
-	const $ = cheerio.load(file);
+	const splitz = filename.split('.txt')
+	const name = splitz[0].replace(/-/g, ' ');
 
-	const $countSpan = $('script')
-	//TO-DO: find a way to target the script
-	console.log($countSpan)
+	const file = fs.readFileSync(`${IN_PATH}/giphy/${filename}`, 'utf-8');
+	const before = 'total: '
+	const after = ','
+	const match = file.match(new RegExp(before + '(.*)' + after))
+	const count = match[1]
+
+	const countData = {name, count}
+
+	giphyCounts.push(countData)
+
 }
 
 function findUniqArtists(data) {
@@ -72,24 +81,21 @@ function formatGiphyUrls(data) {
 		.filter(d => (!d.includes('&') && !d.includes('Broadway')))
 		.map(function(artist) {
 			const term = artist.trim().replace(/\s+/g, '-').replace('.', '').replace('!', '').replace('Pnk', 'Pink')
-			return term;
+			const url = `https://giphy.com/search/${term}`
+			return {artist, url};
 		})
 
-	const urls = searchTerms.map(function(term) {
-		return `https://giphy.com/search/${term}`
-	})
-
-	giphyUrls.push(urls)
+	giphyUrls.push(searchTerms)
 }
 
-async function pullGiphyHTML(link) {
-	const url = link
+async function pullGiphyHTML(data) {
+	const url = data.url
 	const splitz = url.split('search/')
 	const name = splitz[1];
 
 	return new Promise((resolve, reject) => {
 		request(url, (err, response, body) => {
-			fs.writeFileSync(`${OUT_PATH}/giphy/${name}.html`, body);
+			fs.writeFileSync(`${OUT_PATH}/giphy/${name}.txt`, body);
 		})
 	})
 }
@@ -113,11 +119,13 @@ function init() {
 	const flatGiphy = [].concat(...giphyUrls);
 	flatGiphy.map(pullGiphyHTML)
 
-	const giphyFiles = fs.readdirSync(`${IN_PATH}/giphy`).filter(d => d.includes('.html'));
-	//giphyFiles.map(getGiphyCount);
-	getGiphyCount(giphyFiles[0])
+	const giphyFiles = fs.readdirSync(`${IN_PATH}/giphy`).filter(d => d.includes('.txt'));
+	giphyFiles.map(getGiphyCount);
 
+	console.log(giphyCounts)
 
+	const csv = d3.csvFormat(giphyCounts);
+  fs.writeFileSync(`${OUT_PATH}/giphyCounts.csv`, csv);
 }
 
 init();
