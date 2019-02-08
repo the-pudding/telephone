@@ -16,70 +16,51 @@ let margin = {
 }
 
 function setup(){
-  $gifDiv = $containerGifs.append('div.gifs')
+  $gifDiv = $containerGifs.append('div.giphyStats')
 
   const $gifGroup = $gifDiv.selectAll('dif__group')
     .data(giphyCounts)
     .enter()
     .append('div.gif__group')
 
-  const $gifText = $gifGroup
-      .append('div.gif__text')
+  const $gifImgContainer = $gifGroup
+    .append('div.gif__gifContainer')
 
-  const rankText = $gifText
+  const rankText = $gifImgContainer
     .append('p.gif__rank-text')
     .text(function(d, i) {
       return i+1
     })
 
-  const nameText = $gifText
-    .append('p.gif__name-text')
-    .text(d => d.name)
-
-  const countText = $gifText
-    .append('p.gif__count-text')
-    .text(d => formatComma(d.count) + ' gifs')
-
-  const gif = $gifGroup
+  const gif = $gifImgContainer
     .append('div.gif__gif')
     .html(function(d){
       const filename = (d.name).replace(/\s+/g, '-')
       return '<img src="assets/images/' + filename + '.gif">'
     })
 
-}
-//
-// function update(){
-//   $right.selectAll('.bar__bar')
-//     .st('width', d => scaleX(d.capacities))
-// }
+  const $gifTextContainer = $gifGroup
+      .append('div.gif__textContainer')
 
-// function resize(){
-//   // defaults to grabbing dimensions from container element
-//   width = $containerBars.node().offsetWidth - margin.left - margin.right;
-//   height = (barHeight * data.length) + (paddingHeight * (data.length - 1))
-//
-//   //console.log({width})
-//
-//   const max = d3.max(data, d => d.capacities)
-//
-//   //console.log({max})
-//
-//   scaleX
-//     .domain([0, max])
-//     .range([0, width - margin.right - margin.left])
-//
-//   const test = scaleX(max)
-//   //console.log({test})
-//
-//   update()
-// }
+  const nameText = $gifTextContainer
+    .append('p.gif__name-text')
+    .html(function(d){
+      const filename = (d.name).replace(/\s+/g, '-')
+      return `<a href='https://giphy.com/search/${filename}'>${d.name}</a>`
+    })
+
+  const countText = $gifTextContainer
+    .append('p.gif__count-text')
+    .text(d => formatComma(d.count) + ' gifs')
+
+}
 
 function init() {
   return new Promise((resolve) => {
 		d3.loadData('assets/data/giphyCounts.csv', (err, response) => {
       //Limit to top 10
-			giphyCounts = response[0].slice(0,10)
+			giphyCounts = response[0].filter(d => d.name !== 'Pink').slice(0,10)
+      console.log(giphyCounts)
       setup()
 			resolve()
 		})

@@ -1,4 +1,13 @@
 /* CUSTOM STORY STYLE */
+.section__defined
+  max-width $column-width
+  margin 0 auto
+  padding 0 1rem
+  font-family $national
+  text-transform uppercase
+  font-weight 700
+  set-type-size('medium', true)
+
 .section__hed
   max-width $column-width
   margin 0 auto
@@ -9,14 +18,37 @@
   margin 0.5rem auto
   padding 0 1rem
   font-family $national
-  text-transform: uppercase;
-  color $gray
+  color $gray-dark
   set-type-size('small', true)
   a
-    color $gray
-    border-bottom 1px solid $gray
+    color $gray-dark
+    text-transform uppercase
+    border-bottom 1px solid $gray-dark
 
 .summary
   max-width $column-width
   margin 0 auto
   padding 0 1rem
+
+  .must__title, .calculation__title
+    text-transform uppercase
+    font-family $national
+    font-weight 700
+    set-type-size('medium', true)
+    margin-bottom 0
+
+  .must__req, .calculation__steps
+    margin-left 1rem
+
+.venue, .gifs
+  max-width $column-width
+  margin 0 auto 6rem auto
+  border-top 1px solid $gray-light
+  padding-top 1rem
+
+.notes
+  font-family $national
+  color $gray-dark
+  set-type-size('small', true)
+  max-width $column-width
+  margin 0 auto

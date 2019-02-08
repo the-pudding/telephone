@@ -12,7 +12,7 @@
     font-family $national
     max-width $column-width
     margin 2rem auto
-    .gifs
+    .giphyStats
       width 100%
       display flex
       flex-direction row
@@ -20,13 +20,32 @@
       justify-content space-between
 
       .gif__group
-        width 19%
-        margin-bottom 2rem
+        width 49%
+        +mq('bp-4')
+          width 19%
+          margin-bottom 1rem
 
-        .gif__text
-          height 5.5rem
+        .gif__textContainer
+          height 4.5rem
+          padding-top 0.25rem
+
+          .gif__name-text
+            font-weight 700
+            margin 0 0 0.25rem 0
+            padding 0
+            line-height 1.2
+
+          .gif__count-text
+            color $gray-dark
+            padding 0
+            line-height 1
+            margin 0 0 0.25rem 0
+
+        .gif__gifContainer
+          position relative
 
           .gif__rank-text
+            position absolute
             background-color $primary
             height 1.5rem
             width 1.5rem
@@ -38,14 +57,10 @@
             padding 0.35rem 0.25rem 0.25rem 0.25rem
             line-height 1
 
-          .gif__name-text
-            font-weight 700
-            margin 0
-            padding 0
-            line-height 1
-
-          .gif__count-text
-            color $gray-dark
-            padding 0
-            line-height 1
-            margin 0 0 0.25rem 0
+          .gif__gif
+            img
+              width 100%
+              height 8rem
+              object-fit cover
+              +mq('bp-4')
+                height 5rem

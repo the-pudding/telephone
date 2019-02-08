@@ -1,6 +1,7 @@
 <section class='venue'>
+  <h3 class='section__defined'>{{{doc.definedBy}}}</h3>
   <h2 class='section__hed'>{{{doc.venueTitle}}}</h2>
-  <h4 class='section__by'>{{{doc.venueBy}}}</h2>
+  <h4 class='section__by'>By {{{doc.venueBy}}}</h2>
   {{#each doc.venueIntro}}
     <p class='prose'>{{{value}}}
   {{/each}}
