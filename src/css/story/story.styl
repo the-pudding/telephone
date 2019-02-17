@@ -1,29 +1,66 @@
-/* CUSTOM STORY STYLE */
+
+
+.first
+  font-size 22px
+  font-weight 400
+  line-height 1.6
+  -webkit-font-smoothing antialiased
+  //margin-bottom 2rem
+.chart-title
+  font-size 24px
+  font-family 'Atlas Grotesk Web'
+  margin-bottom .5rem
+  margin-top 2rem
+
+
+.definition-wrapper
+  display flex
+  justify-content flex-start
+  padding 0 1rem
+  max-width 40rem
+  margin 0 auto
+  margin-top 2rem
+
+body
+  background #f7f7f7
+
+.section__defined, .section__hed
+  font-size 32px
+
 .section__defined
   max-width $column-width
-  margin 0 auto
-  padding 0 1rem
-  font-family $national
-  text-transform uppercase
-  font-weight 700
-  set-type-size('medium', true)
+  margin 0
+  text-transform capitalize
+  //font-family 'Atlas Grotesk Web'
+  font-weight 400
+  //set-type-size('large', true)
+  margin-right 5px
+  //color #676767
 
 .section__hed
   max-width $column-width
-  margin 0 auto
-  padding 0 1rem
+  margin 0
+  text-transform capitalize
+  //font-family 'Atlas Grotesk Web'
+  font-weight 500
+  //set-type-size('large', true)
+  //color #44a29e
 
 .section__by
   max-width $column-width
   margin 0.5rem auto
   padding 0 1rem
-  font-family $national
-  color $gray-dark
-  set-type-size('small', true)
+  font-family 'Atlas Grotesk Web'
+  color #222
+  font-size 15px
+  font-weight 400
+  //margin-bottom 0px
+  margin-bottom 2rem
+
   a
-    color $gray-dark
-    text-transform uppercase
-    border-bottom 1px solid $gray-dark
+    border-bottom none
+    font-weight 400
+    font-family 'Atlas Grotesk Web'
 
 .summary
   max-width $column-width
@@ -31,24 +68,31 @@
   padding 0 1rem
 
   .must__title, .calculation__title
-    text-transform uppercase
-    font-family $national
-    font-weight 700
-    set-type-size('medium', true)
-    margin-bottom 0
+    //text-transform uppercase
+    font-family Atlas Grotesk Web
+    font-weight 500
+    font-size 15px
+    margin-bottom .5rem
 
   .must__req, .calculation__steps
     margin-left 1rem
 
+    li
+      line-height 1.8
+      margin-bottom .4rem
+      font-size 16px
+      -webkit-font-smoothing auto
+
+
 .venue, .gifs
   max-width $column-width
-  margin 0 auto 6rem auto
-  border-top 1px solid $gray-light
+  margin 0 auto 3rem auto
+  //border-top 1px solid $gray-light
   padding-top 1rem
 
 .notes
-  font-family $national
+  font-family 'Atlas Grotesk Web'
   color $gray-dark
-  set-type-size('small', true)
+  set-type-size('x-small', true)
   max-width $column-width
   margin 0 auto

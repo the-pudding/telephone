@@ -1,0 +1,94 @@
+.youtube
+  margin-top 100px
+
+.chart-youtube-flex
+  display flex
+  //margin-top 3rem
+  margin-bottom 3rem
+
+.chart-youtube-wrapper
+  margin 0 auto
+  .chart-youtube
+    display flex
+    .chart-youtube-geo
+      &:first-of-type
+        margin-right 2rem
+        .chart-youtube-geo-platform-wrapper
+          &:last-of-type
+            .chart-youtube-geo-ranking-wrapper
+              .chart-youtube-geo-ranking-row
+                &:first-of-type
+                  .artist-counts
+                    display none
+      .chart-youtube-geo-title
+        margin 0 auto
+        font-weight 300
+        padding-bottom 7px
+        font-family 'Atlas Grotesk Web'
+        margin-top 7px
+        border-bottom 3px solid #CBCBCB
+      .chart-youtube-geo-ranking-container
+        display flex
+        .chart-youtube-geo-platform-wrapper
+          &:last-of-type
+            margin-left 40px
+            .chart-youtube-geo-platform
+              //padding-left 30px
+              color #11757b
+            .artist-name
+              padding-left 0px
+          .chart-youtube-geo-platform
+            margin 0 auto
+            font-size 12px
+            font-family 'Atlas Grotesk Web'
+            font-weight 600
+            padding-top 10px
+            padding-bottom 2px
+            text-transform uppercase
+            letter-spacing 1px
+            color #b50909
+          .chart-youtube-geo-ranking-wrapper
+            .chart-youtube-geo-ranking-row
+              display flex
+              border-bottom 1px solid #CBCBCB
+              counter-increment myIndex
+              &:first-of-type
+                .artist-counts
+                  position relative
+                  &:before
+                    content ''
+                    position absolute
+                    top 0px
+                    font-size 12px
+                    font-weight 400
+                    transform translate(0,-100%)
+                    color #444
+              &:nth-of-type(n+5)
+                border none
+              .artist-counts
+                font-size 11px
+                font-family 'Atlas Grotesk Web'
+                font-weight 400
+                margin 0
+                align-self center
+                margin-left 5px
+              .artist-name
+                font-size 14px
+                //width 120px
+                position relative
+                font-family 'Atlas Grotesk Web'
+                font-weight 500
+                line-height 1.7
+                margin 0
+                &:before
+                  content counter(myIndex)'.'
+                  position absolute
+                  left -5px
+                  text-align right
+                  width 20px
+                  font-size 12px
+                  font-weight 500
+                  top 50%
+                  transform translate(-100%,-50%)
+                  font-family 'Atlas Grotesk Web'
+                  color #777777

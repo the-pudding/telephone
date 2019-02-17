@@ -52,7 +52,17 @@ function setup(){
     .text(d => d.artist)
   bar
     .append('p.bar__bar-text')
-    .text(d => `${formatNumber(d.capacities)}`)
+    .text(function(d,i){
+      return `${formatNumber(d.capacities)}`
+    })
+
+  bar.filter(function(d,i){
+      return i ==0;
+    })
+    .select(".bar__bar-text")
+    .text(function(d){
+      return `${formatNumber(d.capacities)}` + " seats"
+    })
 
 
 

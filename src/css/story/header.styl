@@ -10,25 +10,48 @@ header
 		display block
 		border none
 		max-width 9rem
-		margin 1rem auto
+		margin .5rem auto
+		margin-top 1rem
 
 		svg
 			fill $off-black
 			display block
 			width 100%
-	
+
 header.is-sticky
 	position fixed
 	transform translate3d(0,0,0)
-	background-color $white
-	box-shadow 0 0 7px 1px $gray-light
+	background none
+	//box-shadow 0 0 7px 1px $gray-light
 	height 3rem
 	display flex
+	width 100%
 	align-items center
-	
+	.logo-link
+		width 25px
+		text-decoration none
+		border none
+		top .5rem
+		left .75rem
+		position absolute
+		&:hover
+			p
+				opacity 1
+				transition opacity .5s
+		p
+			font-family 'National 2 Narrow Web'
+			font-size 14px
+			//text-transform uppercase
+			font-weight 500
+			opacity 0
+			margin 0 auto
+			width 100px
+			transition opacity .5s
+
+
 	a.logo
 		margin 0 auto
-	
+
 	.header__toggle
 		position fixed
 		transform translate3d(0,0,0)
@@ -38,17 +61,17 @@ header.is-sticky
 		cursor pointer
 		line-height 1
 		z-index set-index(overlay)
-		border none 
+		border none
 		background-color transparent
 		svg
 			stroke $off-black
-		
+
 		span
 			&:first-of-type
 				display block
 			&:last-of-type
 				display none
-		
+
 		&.is-visible span
 			&:first-of-type
 				display none
@@ -129,12 +152,12 @@ header.is-sticky.is-dark
 	.header__toggle
 		svg
 			stroke $off-white
-		
+
 		&.is-visible span
 			svg
 				stroke $off-black
-				
-	
+
+
 	.menu__patreon a
 		color $off-white
 		background-color $off-black

@@ -1,7 +1,10 @@
 <section class='gifs'>
-  <h3 class='section__defined'>{{{doc.definedBy}}}</h3>
-  <h2 class='section__hed'>{{{doc.gifsTitle}}}</h2>
-  <h4 class='section__by'>By {{{doc.gifsBy}}}</h4>
+  <div class="definition-wrapper">
+    <h3 class='section__defined'>{{{doc.definedBy}}}</h3>
+    <h2 class='section__hed'>{{{doc.gifsTitle}}}</h2>
+  </div>
+  <h4 class='section__by'>{{{doc.gifsBy}}}</h2>
+
   {{#each doc.gifsIntro}}
     <p class='prose'>{{{value}}}</p>
   {{/each}}

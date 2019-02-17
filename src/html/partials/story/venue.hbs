@@ -1,10 +1,15 @@
 <section class='venue'>
-  <h3 class='section__defined'>{{{doc.definedBy}}}</h3>
-  <h2 class='section__hed'>{{{doc.venueTitle}}}</h2>
-  <h4 class='section__by'>By {{{doc.venueBy}}}</h2>
+  <div class="definition-wrapper">
+    <h3 class='section__defined'>{{{doc.definedBy}}}</h3>
+    <h2 class='section__hed'>{{{doc.venueTitle}}}</h2>
+  </div>
+  <h4 class='section__by'>{{{doc.venueBy}}}</h2>
+
   {{#each doc.venueIntro}}
     <p class='prose'>{{{value}}}
   {{/each}}
+
+
 
   <div class='summary summary-venue'>
     <p class='must__title'>{{{doc.artistsMust}}}</p>
@@ -20,6 +25,7 @@
         <li>{{{this}}}</li>
       {{/each}}
     </ul>
+    <p class="chart-title">{{{doc.venueChartTitle}}}</p>
     <figure class='chart chart-venue'></figure>
   </div>
 </section>

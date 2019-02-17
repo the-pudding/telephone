@@ -1,0 +1,25 @@
+<section class='youtube'>
+  <div class='definition-wrapper'>
+    <h3 class="section__defined">Defined by YouTube Views</h3>
+  </div>
+  <h4 class='section__by'>By Matt Daniels</h2>
+  <!-- <div class="definition-wrapper">
+    <h3 class='section__defined'>{{{doc.definedBy}}}</h3>
+    <h2 class='section__hed'>{{{doc.gifsTitle}}}</h2>
+  </div> -->
+  {{#each doc.chartIntro}}
+    <p class='prose'>{{{value}}}</p>
+  {{/each}}
+
+  <div class="chart-youtube-flex">
+    <figure class='chart chart-youtube-wrapper'>
+      <p class="chart-title">Top Artists in 2018</p>
+      <div class="chart-youtube">
+      </div>
+    </figure>
+  </div>
+  {{#each doc.chartPost}}
+    <p class='prose'>{{{value}}}</p>
+  {{/each}}
+
+</section>

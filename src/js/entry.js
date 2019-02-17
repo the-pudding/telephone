@@ -4,6 +4,8 @@ import isMobile from './utils/is-mobile';
 import graphic from './graphic';
 import venue from './venue'
 import gifs from './gifs'
+import youtube from './youtube'
+
 
 const $body = d3.select('body');
 let previousWidth = 0;
@@ -41,8 +43,10 @@ function init() {
 	setupStickyHeader();
 	// kick off graphic code
 	graphic.init();
+	youtube.init();
 	venue.init()
 	gifs.init()
+
 }
 
 init();
