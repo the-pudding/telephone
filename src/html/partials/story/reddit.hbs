@@ -1,0 +1,37 @@
+<section class='reddit'>
+
+    <div class="definition-wrapper">
+        <h3 class='section__defined'>{{{doc.definedBy}}}</h3>
+        <h2 class='section__hed'>{{{doc.redditTitle}}}</h2>
+    </div>
+    <h4 class='section__by'>{{{doc.redditBy}}}</h2>
+
+    {{#each doc.redditIntro}}
+        <p class='prose'>{{{value}}}
+    {{/each}}
+
+    <div class='summary summary-reddit'>
+        <p class='must__title'>{{{doc.artistsMust}}}</p>
+        <ul class='must__req'>
+        {{#each doc.redditReq}}
+            <li>{{{this}}}</li>
+        {{/each}}
+        </ul>
+
+        <p class='calculation__title'>{{{doc.calcTitle}}}</p>
+        <ul class='calculation__steps'>
+        {{#each doc.redditCalc}}
+            <li>{{{this}}}</li>
+        {{/each}}
+        </ul>
+
+        <p id="reddit-chart-title">Top Artists on Reddit</p>
+        <p id="reddit-chart-subtitle">Sized by number of comments</p>
+        <figure id="reddit-text-cloud"></figure>
+
+        {{#each doc.redditNotes}}
+            <p class='notes'>{{{value}}}
+        {{/each}}
+  </div>
+
+</section>
