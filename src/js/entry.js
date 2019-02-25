@@ -5,6 +5,7 @@ import graphic from './graphic';
 import venue from './venue'
 import gifs from './gifs'
 import youtube from './youtube'
+import reddit from './reddit'
 
 
 const $body = d3.select('body');
@@ -17,7 +18,8 @@ function resize() {
 	if (previousWidth !== width) {
 		previousWidth = width;
 		graphic.resize();
-		venue.resize()
+		venue.resize();
+		reddit.resize();
 	}
 }
 
@@ -46,6 +48,7 @@ function init() {
 	youtube.init();
 	venue.init()
 	gifs.init()
+	reddit.init()
 
 }
 
