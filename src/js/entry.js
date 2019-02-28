@@ -1,12 +1,11 @@
 /* global d3 */
 import debounce from 'lodash.debounce';
 import isMobile from './utils/is-mobile';
-import graphic from './graphic';
 import venue from './venue'
-import gifs from './gifs'
 import youtube from './youtube'
+import gifs from './gifs'
 import reddit from './reddit'
-
+import social from './social';
 
 const $body = d3.select('body');
 let previousWidth = 0;
@@ -17,9 +16,9 @@ function resize() {
 	const width = $body.node().offsetWidth;
 	if (previousWidth !== width) {
 		previousWidth = width;
-		graphic.resize();
 		venue.resize();
 		reddit.resize();
+		social.resize();
 	}
 }
 
@@ -44,11 +43,11 @@ function init() {
 	// setup sticky header menu
 	setupStickyHeader();
 	// kick off graphic code
-	graphic.init();
-	youtube.init();
 	venue.init()
+	youtube.init();
 	gifs.init()
 	reddit.init()
+	social.init();
 
 }
 

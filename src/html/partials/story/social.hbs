@@ -1,0 +1,33 @@
+<section class='social'>
+
+    <div class="definition-wrapper">
+        <h3 class='section__defined'>{{{doc.definedBy}}}</h3>
+        <h2 class='section__hed'>{{{doc.socialTitle}}}</h2>
+    </div>
+    <h4 class='section__by'>{{{doc.socialBy}}}</h2>
+
+    {{#each doc.socialIntro}}
+			<p class='prose'>{{{value}}}</p>
+    {{/each}}
+
+   	<figure>
+			 	<div class='key'>
+					<p class='youtube'>YouTube</p>
+					<p class='facebook'>Facebook</p>
+					<p class='twitter'>Twitter</p>
+					<p class='instagram'>Instagram</p>
+				 </div>
+			 	<svg>
+					<g>
+						<g class='g-axis'></g>
+						<g class='g-vis'></g>
+					</g>
+		 		</svg>
+		 </figure>
+
+		{{#each doc.socialPost}}
+			<p class='prose'>{{{value}}}</p>
+		{{/each}}
+  </div>
+
+</section>
