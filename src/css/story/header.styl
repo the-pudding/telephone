@@ -6,12 +6,19 @@
 		fill #cc9592
 
 .logo-wrapper
+	position relative
+	margin-top -100px
+	@media (max-width: 600px)
+		margin-top -50px
+		a.logo
+			max-width 8rem
 	a.logo
 		display block
 		border none
 		max-width 9rem
 		margin .5rem auto
 		margin-top 1rem
+
 
 		svg
 			fill $off-black
