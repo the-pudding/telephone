@@ -1,16 +1,46 @@
+body .pudding-footer, footer
+  background #fbd3d1
+  .footer-company
+    background #fbd3d1
+    color black
+    font-weight 500
+    .footer-company__contact
+      font-weight 500
+      li
+        a
+          font-weight 500
+    .footer-company__description
+      color black
+      font-weight 500
+      a
+        color black
+        font-weight 500
 
+
+    .footer__location
+      color black
+
+p
+  color #111
+
+.prose
+  color #111
 
 .first
-  font-size 22px
+  font-size 19px
   font-weight 400
   line-height 1.6
   -webkit-font-smoothing antialiased
   //margin-bottom 2rem
 .chart-title
-  font-size 24px
+  font-size 16px
   font-family 'Atlas Grotesk Web'
-  margin-bottom .5rem
+  margin-bottom 0rem
   margin-top 2rem
+  padding-bottom 11px
+  border-bottom 3px solid black
+  font-weight 600
+  color #111
 
 
 .definition-wrapper
@@ -18,14 +48,20 @@
   max-width 40rem
   margin 0 auto
   margin-top 2rem
+  text-align center
 	h2,h3
 		display inline-block
 
 body
   background #f9f9f9
+  background #fbd3d1
 
 .section__defined, .section__hed
   font-size 32px
+  color #4a4e80
+  font-family 'Atlas Grotesk Web'
+  font-weight 500
+
 
 .section__defined
   max-width $column-width
@@ -45,22 +81,28 @@ body
   font-weight 500
   //set-type-size('large', true)
   //color #44a29e
+  @media (max-width: 600px)
+    font-size 30px
+    width: 95%
+    font-weight 400
 
 .section__by
   max-width $column-width
   margin 0.5rem auto
   padding 0 1rem
   font-family 'Atlas Grotesk Web'
-  color #222
+  color #111
   font-size 15px
   font-weight 400
   //margin-bottom 0px
   margin-bottom 2rem
+  text-align center
 
   a
     border-bottom none
     font-weight 400
     font-family 'Atlas Grotesk Web'
+    color #111
 
 .summary
   max-width $column-width
@@ -73,6 +115,7 @@ body
     font-weight 500
     font-size 15px
     margin-bottom .5rem
+    color #111
 
   .must__req, .calculation__steps
     margin-left 1rem
@@ -92,7 +135,8 @@ body
 
 .notes
   font-family 'Atlas Grotesk Web'
-  color $gray-dark
+  color rgba(0, 0, 0, 0.67)
   set-type-size('x-small', true)
   max-width $column-width
   margin 0 auto
+  width:95%

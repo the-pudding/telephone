@@ -1,10 +1,35 @@
+#rightP
+	path
+		fill #a06b68
+#leftP
+	path
+		fill #cc9592
+
+.logo-wrapper
+	a.logo
+		display block
+		border none
+		max-width 9rem
+		margin .5rem auto
+		margin-top 1rem
+
+		svg
+			fill $off-black
+			display block
+			width 100%
+			g
+				path
+					fill #4a4e80
+
 header
 	z-index set-index('overlay')
 	position absolute
 	top 0
 	left 0
 	width 100%
-	background-color $white
+	z-index 1000
+	//background-color $white
+	//background #fbd3d1
 
 	a.logo
 		display block
@@ -17,6 +42,9 @@ header
 			fill $off-black
 			display block
 			width 100%
+			g
+				path
+					fill #4a4e80
 
 header.is-sticky
 	position fixed
@@ -65,6 +93,7 @@ header.is-sticky
 		background-color transparent
 		svg
 			stroke $off-black
+			stroke #8e6663
 
 		span
 			&:first-of-type

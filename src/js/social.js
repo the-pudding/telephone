@@ -9,7 +9,7 @@ const $axis = $figure.select('.g-axis');
 
 const platforms = ['instagram', 'twitter', 'facebook', 'youtube'];
 const PERSON_H = 28;
-const RADIUS = 4;
+const RADIUS = 5;
 const MARGIN = { top: 36, bottom: 12, left: 12, right: 12 };
 const OFFSET_X1 = 120 + RADIUS;
 const OFFSET_X2 = 40 + RADIUS * 3;

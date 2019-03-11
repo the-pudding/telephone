@@ -6,7 +6,7 @@ function init() {
 	var youtubeUS = [["YoungBoy","2.49B"], ["XXXTentacion","2.04B"], ["Drake","2B"], ["Ozuna","1.52B"], ["Cardi B","1.5B"], ["Bad Bunny","1.46B"], ["Post Malone","1.45B"], ["Lil Baby","1.44B"], ["Eminem","1.32B"], ["Kodak Black","1.19B"]];
 	var spotifyUS = [["Drake",""], ["Post Malone",""], ["XXXTentacion",""], ["Travis Scott",""], ["Khalid",""]];
 	var youtubeGlobal = [["Ozuna","10.7B"], ["J Balvin","8.51B"], ["Bad Bunny","8.48B"], ["Alka Yagnik","6.97B"], ["Neha Kakkar","6.65B"], ["Ed Sheeran","6.24B"], ["Nicky Jam","5.97B"], ["Udit Narayan","5.84B"], ["BTS","5.54B"], ["Daddy Yankee","5.17B"]];
-	var spotifyGlobal = [["Drake","8.2B"], ["Post Malone",""], ["XXXTentacion",""], ["J. Balvin","3B"], ["Ed Sheeran",""]];
+	var spotifyGlobal = [["Drake","8.2B"], ["Post Malone","*"], ["XXXTentacion","*"], ["J. Balvin","3B"], ["Ed Sheeran","*"]];
 
 	var data = [
 		{"geo":"US","data":[{"platform":"YouTube","values":youtubeUS},{"platform":"Spotify","values":spotifyUS}]},

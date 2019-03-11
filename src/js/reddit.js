@@ -36,10 +36,11 @@ function setup() {
 			.attr('class', 'reddit-artist-inner')
 			// .style('opacity', opacity(d.count))
 			.style('padding', `${topPadding}px ${padding(d.count)}px`)
-			.style('background', () => {
-				if (i === 0) return '#d65454';
-				return '#34a29e';
-			});
+			// .style('background', () => {
+			// 	if (i === 0) return '#000';
+			// 	return '#fff';
+			// })
+			;
 
 		artistBlock
 			.append('p')
@@ -63,7 +64,8 @@ function setup() {
 			.style('border-color', () => {
 				if (i === 0) return '#d65454';
 				return '#34a29e';
-			});
+			})
+			;
 	});
 
 	// resize()
@@ -71,11 +73,11 @@ function setup() {
 
 function resize() {
 	if (window.innerWidth < 650) {
-		size.range([8, 42]), smallSize.range([8, 14]), padding.range([4, 20]);
+		size.range([10, 42]), smallSize.range([10, 14]), padding.range([4, 20]);
 
 		topPadding = 4;
 	} else {
-		size.range([8, 54]), smallSize.range([8, 16]), padding.range([4, 20]);
+		size.range([10, 54]), smallSize.range([10, 16]), padding.range([4, 20]);
 
 		topPadding = 8;
 	}

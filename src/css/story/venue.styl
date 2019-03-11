@@ -17,22 +17,31 @@
       display flex
       flex-direction column
       margin-bottom 0.25rem
+      &:first-of-type
+        .bar__bar
+          background #98c2ce
+      &:last-of-type
+        @media (max-width: 400px)
+          .bar__label-text
+            font-size 11px
+            line-height 1
     .right
     .bar__label
       &-text
         margin 0
         font-size 14px
         font-weight bold
-        color white
+        color #111
       .bar__bar
-        background-color: $primary
-        height 25px
+        background-color white
+        height 30px
         display flex
         flex-direction row
         align-items: center
-        justify-content: space-between;
+        justify-content space-between
         padding 0 0.5rem
+        border 3px solid #111
         &-text
           font-size 14px
           margin 0
-          color white
+          color #111

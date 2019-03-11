@@ -1,7 +1,45 @@
+
+.header-image-wrapper
+
+	max-width 700px
+	margin 0 auto
+	z-index 0
+	margin-bottom 2rem
+	position relative
+	.pattern-image
+		position absolute
+		max-width 700px
+		transform translate(-100%,0)
+		left 0px
+	.pattern-image-2
+		position absolute
+		max-width 700px
+		right 0px
+		transform translate(100%,0)
+	.main-image
+		max-width 700px
+		margin 0 auto
+
+
+.header-image
+	background-image url('assets/images/artists.jpg')
+	width 100%
+	height 400px
+	margin-top 200px
+	background-size contain
+	max-width 1000px
+	margin 0 auto
+	background-repeat no-repeat
+	background-position center
+	//margin-top 3rem
+
 .intro
 	margin 0 auto
-	padding-top 6rem
-
+	overflow hidden
+	.intro-header-wrapper
+		display flex
+		flex-direction column
+		justify-content flex-end
 	&__hed
 		max-width 50rem
 		width 100%
@@ -11,16 +49,19 @@
 		font-weight 300
 		line-height 1.2
 		font-size 64px
-		+mq('bp-4')
-			line-height 1.2
-			font-size 110px
-			padding-top 5rem
+		@media (max-width: 600px)
+			font-size 36px
+			width: 95%
+
 
 	&__dek
 		max-width $column-width
 		margin 0 auto
 		margin-top 1rem
 		text-align center
+		max-width 560px
+		@media (max-width: 560px)
+			width 95%
 
 	&__byline
 		max-width $column-width
@@ -37,9 +78,9 @@
 		display block
 		max-width $column-width
 		margin 0 auto
-		margin-top 1rem
+		margin-top 2rem
 		text-align center
 		font-family 'Atlas Grotesk Web'
-		font-size 16px
-		font-weight 400
+		font-size 12px
+		font-weight 500
 		margin-bottom 2rem

@@ -4,11 +4,25 @@
 .chart-youtube-flex
   display flex
   margin-bottom 3rem
+  @media (max-width: 700px)
+    width calc(100% - 50px)
+    margin 0 auto
+    margin-bottom 3rem
+    .chart-youtube
+      flex-direction column
+      .chart-youtube-geo
+        &:first-of-type
+          margin-right 0px
+          margin-bottom 30px
+  .chart-title
+    border none
 
 .chart-youtube-wrapper
   margin 0 auto
   .chart-youtube
     display flex
+    flex-wrap wrap
+
     .chart-youtube-geo
       &:first-of-type
         margin-right 2rem
@@ -24,8 +38,8 @@
         font-weight 300
         padding-bottom 7px
         font-family 'Atlas Grotesk Web'
-        margin-top 7px
-        border-bottom 3px solid #CBCBCB
+        margin-top 0px
+        border-bottom 3px solid #111
       .chart-youtube-geo-ranking-container
         display flex
         .chart-youtube-geo-platform-wrapper
@@ -33,23 +47,23 @@
             margin-left 40px
             .chart-youtube-geo-platform
               //padding-left 30px
-              color $primary
+              color #256273
             .artist-name
               padding-left 0px
           .chart-youtube-geo-platform
             margin 0 auto
-            font-size 12px
+            font-size 16px
             font-family 'Atlas Grotesk Web'
             font-weight 600
             padding-top 10px
             padding-bottom 2px
-            text-transform uppercase
-            letter-spacing 1px
-            color $secondary
+            //text-transform uppercase
+            //letter-spacing 1px
+            color #000
           .chart-youtube-geo-ranking-wrapper
             .chart-youtube-geo-ranking-row
               display flex
-              border-bottom 1px solid #CBCBCB
+              //border-bottom 1px solid #CBCBCB
               counter-increment myIndex
               &:first-of-type
                 .artist-counts
@@ -85,9 +99,9 @@
                   left -5px
                   text-align right
                   width 20px
-                  font-size 12px
-                  font-weight 500
+                  font-size 11px
+                  font-weight 400
                   top 50%
                   transform translate(-100%,-50%)
                   font-family 'Atlas Grotesk Web'
-                  color #777777
+                  color #111

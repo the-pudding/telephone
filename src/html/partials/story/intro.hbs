@@ -1,11 +1,36 @@
 <div class='intro'>
-	<h1 class='intro__hed'>{{doc.title}}</h1>
-	<p class='intro__dek'>{{doc.description}}</p>
-	<!-- <p class='intro__byline'>By
-		<a href='{{meta.author.url}}' target='_blank'>{{meta.author.name}}
-		</a>
-	</p> -->
-	<time class='intro__time'>February 2019</time>
+	<div class="intro-header-wrapper">
+
+		<!-- <p class='intro__byline'>By
+			<a href='{{meta.author.url}}' target='_blank'>{{meta.author.name}}
+			</a>
+		</p> -->
+		<div class="header-image-wrapper">
+			<div class="header-image-center-div">
+				<img class="pattern-image" src="assets/images/pattern.png">
+
+				</img>
+				<img class="pattern-image-2" src="assets/images/pattern.png">
+
+				</img>
+				<img class="main-image" src="assets/images/main-image.png" alt="image or artists who charted on Billboard among the top 5 in 2018.">
+			</div>
+		</div>
+		<div class="logo-wrapper">
+			<a href='https://pudding.cool' target='_blank' class='logo'>
+				@@include('pudding-wordmark.svg')
+			</a>
+		</div>
+		<h1 class='intro__hed'>{{doc.title}}</h1>
+		<p class='intro__dek'><span class=first><a href=https://www.billboard.com/charts/year-end/2018/top-artists>Billboard</a> claims the most popular musicians of 2018 were Drake, Post Malone, Ed Sheeran, Taylor Swift, and Cardi B. But neither Sheeran nor Swift released an album in 2018; does this ranking truly represent music culture?</span></p>
+
+		<!-- <div class="header-image">
+
+		</div> -->
+		<time class='intro__time'>February 2019</time>
+
+	</div>
+
 
 	{{#each doc.intro}}
 		<p class='prose'>{{{value}}}</p>
